@@ -8,31 +8,37 @@ echo "=== Compiling solvers (without compiler optimizations) ==="
 # Version 0 — FORTRAN 77 Legacy Solver
 # ------------------------------------
 gfortran solver_0.for -o temp_dir/sol0
+echo "solver_0.for Compiled"
 
 # ------------------------------------
 # Version 1 — Direct C++ Translation
 # ------------------------------------
 g++ solver_1.cpp -o temp_dir/sol1
+echo "solver_1.cpp Compiled"
 
 # ------------------------------------
 # Version 2 — Loop Reordered
 # ------------------------------------
 g++ solver_2.cpp -o temp_dir/sol2
+echo "solver_2.cpp Compiled"
 
 # ------------------------------------
 # Version 3 — Flattened Memory
 # ------------------------------------
 g++ solver_3.cpp -o temp_dir/sol3
+echo "solver_3.cpp Compiled"
 
 # ------------------------------------
 # Version 4 — Blitz++ Arrays
 # ------------------------------------
 g++ solver_4.cpp -o temp_dir/sol4
+echo "solver_4.cpp Compiled"
 
 # ------------------------------------
 # Version 5 — Blitz++ Linear + Pointer
 # ------------------------------------
 g++ solver_5.cpp -o temp_dir/sol5
+echo "solver_5.cpp Compiled"
 
 echo
 echo "=== Simulating Solver with Perf ==="
