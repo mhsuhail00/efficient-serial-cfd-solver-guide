@@ -158,6 +158,9 @@ Performance over 5×10⁶ iterations on Intel i9-12900K:
 
 **Recommendation**: Version 5 (Blitz++ allocation + pointer traversal) provides the best balance of performance, maintainability, and memory safety.
 
+## Demo: Executing the Script
+![Demo_Performance](Demo/demo.gif)
+
 ## Authors
 
 **Mohammad Suhail**  
