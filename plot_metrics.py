@@ -164,7 +164,9 @@ def main():
     x_labels = ['solver_0', 'solver_1', 'solver_2', 'solver_3', 'solver_4', 'solver_5']
     rows = []
     for s in SOLVERS:
-        fname = f"tmp_data/{s}_perf.txt"
+        # Use absolute path relative to this script location
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        fname = os.path.join(script_dir, "temp_dir", f"{s}_perf.txt")
         if not os.path.exists(fname):
             print(f"Skipping {fname} (not found).", file=sys.stderr)
             continue
@@ -185,7 +187,9 @@ def main():
     df = df.sort_values('solver').reset_index(drop=True)
 
     # Save CSV
-    df.to_csv('tmp_data/cache_analysis.csv', index=False)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(script_dir, 'temp_dir', 'cache_analysis.csv')
+    df.to_csv(csv_path, index=False)
     print("Saved cache_analysis.csv")
 
     # ---- Instruction & Branch Overhead plot (same style as your original hard-coded file) ----
@@ -243,7 +247,10 @@ def main():
         axes[1].text(bar.get_x() + bar.get_width()/2., h, f'{h:.1f}', ha='center', va='bottom', fontsize=14)
 
     plt.tight_layout()
-    plt.savefig('plots/function_call_overhead.png', dpi=300, bbox_inches='tight')
+    plot_dir = os.path.join(script_dir, 'plots')
+    if not os.path.exists(plot_dir):
+        os.makedirs(plot_dir)
+    plt.savefig(os.path.join(plot_dir, 'function_call_overhead.png'), dpi=300, bbox_inches='tight')
     print("Saved function_call_overhead.png")
 
     # Print summary values similar to your original script
@@ -292,7 +299,7 @@ def main():
     ax2.tick_params(axis='both', labelsize=16)
     ax2.margins(y=0.2)
     plt.tight_layout()
-    plt.savefig('plots/cache_performance.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(plot_dir, 'cache_performance.png'), dpi=300, bbox_inches='tight')
     print("Saved cache_performance.png")
 
     # ---- Execution time plot ----
@@ -314,7 +321,7 @@ def main():
     ax3.tick_params(axis='both', labelsize=16)
     ax3.margins(y=0.2)
     plt.tight_layout()
-    plt.savefig('plots/execution.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(plot_dir, 'execution.png'), dpi=300, bbox_inches='tight')
     print("Saved execution.png")
 
     plt.show()

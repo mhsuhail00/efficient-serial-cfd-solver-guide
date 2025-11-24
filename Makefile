@@ -11,12 +11,24 @@ run: prepare
 
 # Step 3: Plot using python
 plot:
-	python plot_metrics.py
+	python3 plot_metrics.py
 
 # Clean: delete temp_dir
 clean:
 	rm -rf temp_dir
+	rm bound.dat
+	rm COEFF_HIS_pr_vor.dat
+	rm COEFF_HIS.dat
+	rm spa100.dat
+	rm spt100.dat
+	rm SURF_DIST.dat
 
 # Optional: also delete plots if needed
 clean_all:
 	rm -rf temp_dir plots
+	rm bound.dat
+	rm COEFF_HIS_pr_vor.dat
+	rm COEFF_HIS.dat
+	rm spa100.dat
+	rm spt100.dat
+	rm SURF_DIST.dat

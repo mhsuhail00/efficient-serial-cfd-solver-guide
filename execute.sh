@@ -40,6 +40,12 @@ echo "solver_4.cpp Compiled"
 g++ solver_5.cpp -o temp_dir/sol5
 echo "solver_5.cpp Compiled"
 
+# ------------------------------------
+# Copy Input Data to tmp Folder
+# ------------------------------------
+cp INP.DAT temp_dir/
+echo "INP.DAT Copied to ./temp_dir"
+
 echo
 echo "=== Simulating Solver with Perf ==="
 # events: cache counters + instructions + branches (core + atom)
